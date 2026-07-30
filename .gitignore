@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build / framework
+dist/
+.output/
+.vinxi/
+.tanstack/
+.nitro/
+.vercel/
+.wrangler/
+.svelte-kit/
+next-env.d.ts
+
+# Env & secrets — never commit keys or PATs
+.env
+.env.*
+!.env.example
+*.pem
+
+# Logs & OS
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Editor / agent / platform
+.grok/
+.idea/
+.vscode/
+*.swp
+.project_id
+.node_modules.lock
+
+# Local QA artifacts (not product source)
+screenshots/
+attachments/
+/tmp/
+
+# Coverage / caches
+coverage/
+.cache/
+.turbo/
+*.tsbuildinfo

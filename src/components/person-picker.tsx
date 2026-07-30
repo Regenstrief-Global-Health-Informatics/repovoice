@@ -183,7 +183,7 @@ export function PersonPicker({
             <div className="min-w-0">
               <CardTitle className="flex items-center gap-2">
                 <Users className="size-4 shrink-0 text-fg-muted" />
-                People from repo
+                People
               </CardTitle>
               <CardDescription>
                 Pick a slug for the next take. After you stop, selection clears

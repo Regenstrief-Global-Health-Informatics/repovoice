@@ -173,7 +173,7 @@ export function SettingsPanel({ className }: { className?: string }) {
       <CardHeader className="pb-2">
         <div className="flex min-w-0 items-center gap-2">
           <Settings2 className="size-4 shrink-0 text-fg-muted" />
-          <CardTitle>Destination & transcription</CardTitle>
+          <CardTitle>Destination and Transcription</CardTitle>
         </div>
         <CardDescription>
           Connect GitHub, pick folders from the repo tree, then set transcription.

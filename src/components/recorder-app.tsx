@@ -21,6 +21,7 @@ import { toast, Toaster } from "sonner";
 import { LevelMeter } from "@/components/level-meter";
 import { HistoryList } from "@/components/history-list";
 import { IosInstallCard } from "@/components/ios-install-card";
+import { DesktopAudioGuide } from "@/components/desktop-audio-guide";
 import {
   PersonPicker,
   type SelectedPerson,
@@ -1060,13 +1061,12 @@ export function RecorderApp() {
               onClear={() => setSelectedPerson(null)}
             />
             <SettingsPanel />
-            <IosInstallCard />
 
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Github className="size-4 shrink-0 text-fg-muted" />
-                  Repo layout
+                  Repo Layout
                 </CardTitle>
                 <CardDescription>
                   Flat interviews folder; filenames include interview or
@@ -1103,6 +1103,9 @@ ${interviewsRoot}/
                 </ul>
               </CardContent>
             </Card>
+
+            <IosInstallCard />
+            <DesktopAudioGuide />
           </div>
         </div>
       </div>

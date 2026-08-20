@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RepoVoice Privacy Policy</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1.25rem; line-height: 1.5; color: #111; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.75rem; }
+    .meta { color: #444; }
+  </style>
+</head>
+<body>
+  <h1>RepoVoice Privacy Policy</h1>
+  <p class="meta"><strong>Operator:</strong> OpenMRS Inc. (a 501(c)(3) nonprofit)<br>
+  <strong>App:</strong> RepoVoice<br>
+  <strong>Contact:</strong> <a href="mailto:paul@openmrs.org">paul@openmrs.org</a><br>
+  <strong>Last updated:</strong> 19 August 2026</p>
+
+  <p>RepoVoice is a free interview and reflection recorder. It is not an official clinical record and is not part of an OpenMRS server. This policy describes what the iOS app and the matching web app do with data.</p>
+
+  <h2>What the app collects</h2>
+  <p><strong>On your device</strong></p>
+  <ul>
+    <li>Microphone audio you choose to record (interviews and reflections).</li>
+    <li>Transcripts, notes, and who the take is linked to (a person slug you pick).</li>
+    <li>Settings you type in: GitHub owner/repo/branch/folder, a GitHub personal access token, and optional xAI or OpenAI API keys.</li>
+    <li>Audio lives in the on-device database (IndexedDB in the web app; the app sandbox on iOS). Settings live in on-device storage.</li>
+  </ul>
+  <p>We do not run analytics, advertising, or crash telemetry in the app.</p>
+  <p><strong>What leaves the device (only if you turn it on)</strong></p>
+  <ul>
+    <li><strong>Speech-to-text:</strong> if you set an xAI or OpenAI key and choose a cloud transcript mode, the audio for that take is sent to that provider so they can return a transcript. Browser/on-device speech recognition stays on the device.</li>
+    <li><strong>GitHub:</strong> if you set a token and a repo, the app uploads the audio file and a Markdown note/transcript to the repository and folder you chose.</li>
+    <li><strong>Sign-in (hosted web only):</strong> the hosted web build may use OpenMRS/Grok sign-in (for example Google). The iOS TestFlight build does not need that for recording.</li>
+  </ul>
+  <p>OpenMRS Inc. does not receive your recordings, tokens, or API keys unless you push them to a GitHub repository the Inc. owns, or you send them to us on purpose.</p>
+
+  <h2>Who else sees the audio</h2>
+  <p>Interviews often include other people’s voices. You are responsible for getting their consent before you record and before you push audio to GitHub. Treat a GitHub repo as a shared drive: anyone with access to that repo can hear the takes.</p>
+  <p>xAI and OpenAI process audio only when you supply a key and use their transcript mode. Their own privacy policies apply to that processing.</p>
+
+  <h2>What we do not do</h2>
+  <ul>
+    <li>We do not sell data.</li>
+    <li>We do not use recordings for advertising.</li>
+    <li>We do not require an OpenMRS patient record or a medical server.</li>
+    <li>Tokens stay in the settings you control. You can delete them in Settings, and you can delete takes from History (and from GitHub, if you already pushed).</li>
+  </ul>
+
+  <h2>Your choices</h2>
+  <ul>
+    <li>Record offline. Cloud STT and GitHub wait until you configure them and have a network.</li>
+    <li>Use browser/on-device transcription only, and never set cloud keys.</li>
+    <li>Delete takes on the device. Deleting on the device does not delete a copy you already committed to GitHub.</li>
+    <li>Revoke the GitHub token and the xAI/OpenAI keys in those products at any time.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>RepoVoice is not directed at children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes in a material way, we will update the date above and the copy at this URL.</p>
+
+  <h2>Contact</h2>
+  <p>Questions or a deletion request: <a href="mailto:paul@openmrs.org">paul@openmrs.org</a>, or OpenMRS Inc., Indianapolis, Indiana.</p>
+</body>
+</html>

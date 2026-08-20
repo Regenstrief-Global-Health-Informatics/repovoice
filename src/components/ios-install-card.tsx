@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { isNativeApp } from "@/lib/native";
 import { cn } from "@/lib/utils";
 
 function isIos(): boolean {
@@ -31,8 +32,16 @@ export function IosInstallCard({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const [installed, setInstalled] = useState(false);
   const [onIos, setOnIos] = useState(false);
+  const [native, setNative] = useState(false);
 
   useEffect(() => {
+    if (isNativeApp()) {
+      setNative(true);
+      setInstalled(true);
+      setOnIos(true);
+      setOpen(false);
+      return;
+    }
     setInstalled(isStandalone());
     setOnIos(isIos());
     // Auto-expand on iPhone when not installed — most useful there
@@ -56,11 +65,13 @@ export function IosInstallCard({ className }: { className?: string }) {
               iPhone App
             </CardTitle>
             <CardDescription>
-              {installed
-                ? "Running from Home Screen — offline library and queue still work."
-                : onIos
-                  ? "Add to Home Screen for full-screen, app-like use."
-                  : "Installable PWA — best experience is Safari on iPhone."}
+              {native
+                ? "Native iOS app — record, live STT, and GitHub push work on this device."
+                : installed
+                  ? "Running from Home Screen — offline library and queue still work."
+                  : onIos
+                    ? "Add to Home Screen for full-screen, app-like use."
+                    : "Installable PWA — or the RepoVoice iOS app via TestFlight."}
             </CardDescription>
           </div>
           <ChevronDown
@@ -76,7 +87,9 @@ export function IosInstallCard({ className }: { className?: string }) {
         <CardContent className="space-y-3 text-sm text-fg-muted leading-relaxed">
           {installed ? (
             <p className="text-success">
-              Installed — open RepoVoice from your Home Screen icon anytime.
+              {native
+                ? "You're in the RepoVoice iOS app. Allow the microphone when asked, then record a take."
+                : "Installed — open RepoVoice from your Home Screen icon anytime."}
             </p>
           ) : (
             <ol className="list-decimal space-y-2 pl-4">

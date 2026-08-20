@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { isNativeApp } from "@/lib/native";
 
 /**
  * Registers the offline service worker and recovers Safari "unstyled after refresh"
@@ -7,6 +8,8 @@ import { useEffect } from "react";
 export function PwaRegister() {
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Capacitor WKWebView loads bundled files — a service worker fights that.
+    if (isNativeApp()) return;
 
     // One-time recovery: if Tailwind tokens never applied, purge SW + hard reload
     const recoverIfUnstyled = async () => {

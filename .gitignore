@@ -43,3 +43,13 @@ coverage/
 .cache/
 .turbo/
 *.tsbuildinfo
+
+# Capacitor — commit the Xcode project; ignore generated copies
+.capacitor/
+ios/App/Pods
+ios/App/Podfile.lock
+ios/App/App/public
+ios/capacitor-cordova-ios-plugins
+ios/DerivedData
+*.xcuserstate
+xcuserdata/

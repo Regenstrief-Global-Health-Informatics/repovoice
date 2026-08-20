@@ -13,7 +13,12 @@ import {
 } from "@/lib/recordings-store";
 import { sessionKindMeta } from "@/lib/session-kind";
 import { useSettings, type AppSettings } from "@/lib/settings-store";
+import { isNativeApp } from "@/lib/native";
 import { transcribeWithGrok, transcribeWithWhisper } from "@/lib/transcribe";
+import {
+  transcribeWithGrokHttp,
+  transcribeWithWhisperHttp,
+} from "@/lib/transcribe-http";
 import { slugify } from "@/lib/utils";
 
 type ProgressFn = (message: string) => void;
@@ -234,18 +239,19 @@ export async function processSyncQueue(opts?: {
           diarize: engine === "grok" ? diarize : false,
         };
 
-        const result =
-          engine === "grok"
-            ? await withTimeout(
-                transcribeWithGrok({ data: payload }),
-                JOB_TIMEOUT_MS,
-                "Grok STT",
-              )
-            : await withTimeout(
-                transcribeWithWhisper({ data: payload }),
-                JOB_TIMEOUT_MS,
-                "Whisper",
-              );
+        // Hosted web: TanStack server functions. iOS WKWebView has no Nitro
+        // server, so call xAI / OpenAI directly from the device.
+        const result = await withTimeout(
+          isNativeApp()
+            ? engine === "grok"
+              ? transcribeWithGrokHttp(payload)
+              : transcribeWithWhisperHttp(payload)
+            : engine === "grok"
+              ? transcribeWithGrok({ data: payload })
+              : transcribeWithWhisper({ data: payload }),
+          JOB_TIMEOUT_MS,
+          engine === "grok" ? "Grok STT" : "Whisper",
+        );
 
         const text = result.text || job.transcript;
         useRecordings.getState().update(job.id, {

@@ -73,6 +73,7 @@ import {
   isIOSDevice,
   LiveSpeechSession,
 } from "@/lib/speech-recognition";
+import { startNativeAppHooks } from "@/lib/native";
 import { processSyncQueue, scheduleSyncQueue } from "@/lib/sync-queue";
 import { cn, downloadBlob, formatDuration } from "@/lib/utils";
 
@@ -178,7 +179,12 @@ export function RecorderApp() {
       scheduleSyncQueue();
     }
 
+    const stopNativeHooks = startNativeAppHooks(() => {
+      if (isOnline()) scheduleSyncQueue();
+    });
+
     return () => {
+      stopNativeHooks();
       window.removeEventListener("online", onOnline);
       window.removeEventListener("offline", onOffline);
       if (timerRef.current) window.clearInterval(timerRef.current);
